@@ -3,8 +3,21 @@
     text-align: left;
 }
 
+#menu img {
+    size: 10%;
+}
+
+#menu #placeholder {
+    background-color: grey;
+    width: 18vw;
+    height: 6vw;
+}
+
 #content {
+    width: 75vw;
+    height: 80vh;
     margin-left: 20vw;
+    background-color: grey;
 }
 
 #footer {
