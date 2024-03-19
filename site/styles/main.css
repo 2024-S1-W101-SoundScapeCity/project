@@ -9,25 +9,10 @@
     text-align: left;
 }
 
-#menu img {
-    size: 10%;
-}
-
 #menu #logo {
     background-color: grey;
     width: 100%;
     height: 50px;
-}
-
-#map {
-    position: relative;
-    background-color: grey;
-    height: 90vh;
-}
-
-#footer {
-    text-decoration: none;
-    text-align: center;
 }
 
 #nowplaying {
@@ -39,10 +24,13 @@
     left: 0;
 }
 
-#footer p {
-    font-size: 70%;
+#map {
+    position: relative;
+    background-color: grey;
+    height: 90vh;
 }
 
-#footer p span {
-    font-size: 100%;
+#footer {
+    text-align: center;
+    font-size: 70%;
 }
