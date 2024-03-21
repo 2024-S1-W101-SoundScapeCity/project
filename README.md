@@ -1,6 +1,6 @@
 readme file
 
-## Packages
+## Important Packages
 
 This project uses npm as a package manager: https://www.npmjs.com
 npm 9.8
@@ -17,10 +17,9 @@ or release branch.
 
 the client-side services have been built using vue-cli: https://cli.vuejs.org
 
-This server uses express.js as a web framework for Node.js. To install and use express, use npm: https://www.npmjs.com/package/express
-npm install express
+## Server-side
 
-- Docuementation: https://expressjs.com
+The server-side services have been built using express: https://expressjs.com
 
 This server uses react as a javascript framework for user interfaces. To install and use vue3, use npm: https://vueframework.com/guide/installation.html#npm
 npm install vue
