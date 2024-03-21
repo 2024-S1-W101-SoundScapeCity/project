@@ -1,11 +1,21 @@
 readme file
 
-#This server uses npm as a package manager: https://www.npmjs.com
+## Packages
 
-#This server uses node.js as a runtime environment for javascript. To install, use npm:
-npm install -g node
+This project uses npm as a package manager: https://www.npmjs.com
+npm 9.8
 
-- Documentation: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+This project uses node.js as a runtime environment for javascript: https://nodejs.org/en
+node v20.5.1
+
+## Git Notes
+
+wip has been used for any commits that are not ready to be merged into the master
+or release branch.
+
+## Client-side
+
+the client-side services have been built using vue-cli: https://cli.vuejs.org
 
 This server uses express.js as a web framework for Node.js. To install and use express, use npm: https://www.npmjs.com/package/express
 npm install express
