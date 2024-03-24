@@ -13,8 +13,25 @@ import HelloWorld from '@/components/HelloWorld.vue'
 const routes = [
   { path: '/', component: HomePage, meta: { requiresAuth: false } },
   { path: '/login', component: Login, meta: { requiresAuth: false } },
-  { path: '/register', component: RegisterAcc, meta: { requiresAuth: false } },
-  { path: '/dashboard', component: DashBoard, meta: { requiresAuth: true } },
+  {
+    path: '/register',
+    component: RegisterAcc,
+    meta: { requiresAuth: false },
+  },
+  {
+    path: '/dashboard',
+    component: DashBoard,
+    meta: { requiresAuth: true },
+    children: [
+      { path: '', redirect: '/dashboard/helloworld' }, // default, redirect to first tab
+      { path: '/dashboard/helloworld', component: HelloWorld },
+      { path: '/dashboard/menu item2', component: HelloWorld }, // relink paths to other components
+      { path: '/dashboard/menu item3', component: HelloWorld },
+      { path: '/dashboard/menu item4', component: HelloWorld },
+      { path: '/dashboard/menu item5', component: HelloWorld },
+      { path: '/dashboard/menu item6', component: HelloWorld },
+    ],
+  },
   { path: '/helloworld', component: HelloWorld },
 ]
 

@@ -43,7 +43,7 @@ export default {
       this.error = null
     },
     loadRegister() {
-      this.$router.push('/signup')
+      this.$router.push('/register')
     },
   },
 }

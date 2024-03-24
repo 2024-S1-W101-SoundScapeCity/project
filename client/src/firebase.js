@@ -3,8 +3,17 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDoc,
+  setDoc,
+  Timestamp,
+  doc,
+} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD_193_UefV9W29Z2t3BSomwQ6bl5T36xo',
@@ -26,4 +35,16 @@ const db = getFirestore(app)
 const auth = getAuth(app)
 
 // TODO: get functions for these exports
-export { db, auth, signInWithEmailAndPassword, createUserWithEmailAndPassword }
+export {
+  db,
+  auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  collection,
+  addDoc,
+  getDoc,
+  setDoc,
+  Timestamp,
+  doc,
+}
