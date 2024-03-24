@@ -1,5 +1,9 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, EmailAuthProvider } from 'firebase/auth'
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -20,7 +24,6 @@ const db = getFirestore(app)
 
 // initialise authentication
 const auth = getAuth(app)
-const provider = new EmailAuthProvider()
 
 // TODO: get functions for these exports
-export { db, auth, provider }
+export { db, auth, signInWithEmailAndPassword, createUserWithEmailAndPassword }

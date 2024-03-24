@@ -13,7 +13,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 const routes = [
   { path: '/', component: HomePage, meta: { requiresAuth: false } },
   { path: '/login', component: Login, meta: { requiresAuth: false } },
-  { path: '/signup', component: RegisterAcc, meta: { requiresAuth: false } },
+  { path: '/register', component: RegisterAcc, meta: { requiresAuth: false } },
   { path: '/dashboard', component: DashBoard, meta: { requiresAuth: true } },
   { path: '/helloworld', component: HelloWorld },
 ]
@@ -37,6 +37,4 @@ router.beforeEach((to, from, next) => {
 })
 // TODO: Redirect after login
 
-export default {
-  router,
-}
+export default router
