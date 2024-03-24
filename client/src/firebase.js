@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app'
+import { getAuth, EmailAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import api from '@/services/api'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD_193_UefV9W29Z2t3BSomwQ6bl5T36xo',
@@ -19,8 +18,9 @@ const app = initializeApp(firebaseConfig)
 // initialise firestore
 const db = getFirestore(app)
 
-export default {
-  logIn(cred) {
-    return api().post('logIn', cred)
-  },
-}
+// initialise authentication
+const auth = getAuth(app)
+const provider = new EmailAuthProvider()
+
+// TODO: get functions for these exports
+export { db, auth, provider }

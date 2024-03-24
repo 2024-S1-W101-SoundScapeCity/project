@@ -10,7 +10,7 @@ app.use(bodyparser.json())
 app.use(cors())
 
 // define route in express
-app.get('/logIn', (req, res) => {
+app.get('/', (req, res) => {
   res.send('hello world!')
 })
 app.listen(process.env.PORT || 8081)

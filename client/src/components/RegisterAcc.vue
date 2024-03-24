@@ -1,21 +1,26 @@
 <template>
   <div id="firebaseus-auth-container">
-    <h1>Login</h1>
+    <h1>Create an Account</h1>
     <input type="text" placeholder="Email" v-model="email" />
     <input type="password" placeholder="Password" v-model="password" />
-    <button @click="loadDashboard">Login</button>
+    <input type="text" placeholder="Name" v-model="name" />
+    <button @click="loadDashboard">Sign Up</button>
   </div>
 </template>
 
 <script>
 import { auth } from '@/firebase'
+import * as firebaseui from 'firebaseui'
 
 var uiConfig = {
   signInFlow: 'popup',
   signInSuccessUrl: '/dashboard',
   signInOptions: [
-    auth.EmailAuthProvider.PROVIDER_ID,
-    // signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+    {
+      provider: auth.EmailAuthProvider.PROVIDER_ID,
+      signInMethod: auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+      requireDisplayName: true,
+    },
   ],
 }
 
