@@ -1,4 +1,6 @@
 readme file
+## Accessing Soundscape City
+https://soundscape-city.web.app/
 
 ## Important Packages
 
@@ -24,19 +26,29 @@ The server-side services have been built using express: https://expressjs.com
 This server uses react as a javascript framework for user interfaces. To install and use vue3, use npm: https://vueframework.com/guide/installation.html#npm
 npm install vue
 
-- Documentation:
+## Setup:
 
-For vue3 development tools, this server uses vite. To run vite, run the following:
-cd <project-name>
-npm install
-npm run dev
+After cloning the project, install the required dependencies for both the server and client:
+  npm install
 
-- Documentation: https://github.com/vitejs/vite
+## Documentation:
 
-#Package Errors:
-If errors are encountered due to the packages, try installing or updating the node modules:
-npm up
-npm i
+To run this web application locally:
+1. Start the server
+   cd server
+   npm start
+   
+2. Run the client
+   cd client
+   npm run serve
 
-#To run local copy of server, call:
-node index.js
+To generate a build of the web application:
+  npm run build
+
+Once a build has been generated, this can be tested using:
+  firebase serve
+
+Once the build is ready for production:
+  firebase deploy
+
+Be sure to push the working build to the release branch after cahanges have been implemented and tested.
