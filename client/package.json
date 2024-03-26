@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --mode development --dashboard",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^1.6.8",
     "core-js": "^3.8.3",
     "firebase": "^10.9.0",
-    "vue": "^3.2.13",
+    "vue": "^3.4.21",
     "vue-resource": "^1.5.3",
     "vue-router": "^4.3.0"
   },
@@ -22,7 +22,8 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "^5.0.8",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "webpack-bundle-analyzer": "^4.10.1"
   },
   "eslintConfig": {
     "root": true,
