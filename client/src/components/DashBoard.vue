@@ -19,6 +19,7 @@
       </div>
       <div id="content">
         <h1>map square goes here</h1>
+        <iframe width="1080" height="720" frameborder="0" scrolling="no" allowfullscreen src="https://arcg.is/1veiH00"></iframe> //arcgismap
       </div>
     </div>
     <div id="footer">
