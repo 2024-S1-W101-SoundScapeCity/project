@@ -1,4 +1,3 @@
-readme file
 ## Accessing Soundscape City
 https://soundscape-city.web.app/
 
