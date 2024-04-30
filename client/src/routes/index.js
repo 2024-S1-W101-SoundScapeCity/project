@@ -7,7 +7,7 @@ import HomePage from '@/components/HomePage.vue'
 import Login from '@/components/LogIn.vue'
 import RegisterAcc from '@/components/RegisterAcc.vue'
 import DashBoard from '@/components/DashBoard.vue'
-import HelloWorld from '@/components/HelloWorld.vue'
+import MapPage from '@/components/MapPage.vue'
 
 // link route to view component
 const routes = [
@@ -23,16 +23,16 @@ const routes = [
     component: DashBoard,
     meta: { requiresAuth: true },
     children: [
-      { path: '', redirect: '/dashboard/helloworld' }, // default, redirect to first tab
-      { path: '/dashboard/helloworld', component: HelloWorld },
-      { path: '/dashboard/menu item2', component: HelloWorld }, // relink paths to other components
-      { path: '/dashboard/menu item3', component: HelloWorld },
-      { path: '/dashboard/menu item4', component: HelloWorld },
-      { path: '/dashboard/menu item5', component: HelloWorld },
-      { path: '/dashboard/menu item6', component: HelloWorld },
+      { path: '', redirect: '/dashboard/map' }, // default, redirect to first tab
+      { path: '/dashboard/map', component: MapPage },
+      { path: '/dashboard/menu item2', component: MapPage }, // relink paths to other components
+      { path: '/dashboard/menu item3', component: MapPage },
+      { path: '/dashboard/menu item4', component: MapPage },
+      { path: '/dashboard/menu item5', component: MapPage },
+      { path: '/dashboard/menu item6', component: MapPage },
     ],
   },
-  { path: '/helloworld', component: HelloWorld },
+  { path: '/map', component: MapPage },
 ]
 
 const router = createRouter({

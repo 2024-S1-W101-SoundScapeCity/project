@@ -26,9 +26,9 @@
 export default {
   data() {
     return {
-      currentTab: 'helloworld',
+      currentTab: 'map',
       tabs: [
-        { name: 'helloworld', route: '/dashboard/helloworld' },
+        { name: 'map', route: '/dashboard/map' },
         { name: 'menu item2', route: '/dashboard/menu item2' },
         { name: 'Menu Item 3', route: '/dashboard/menu item3' },
         { name: 'Menu Item 4', route: '/dashboard/menu item4' },
