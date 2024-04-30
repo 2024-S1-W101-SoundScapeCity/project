@@ -12,10 +12,6 @@
       <div id="tab-content">
         <router-view></router-view>
       </div>
-      <div id="content" class="map-container">
-        <iframe class="map-iframe" width="1080" height="720" frameborder="0" scrolling="no" allowfullscreen
-          src="https://arcg.is/1veiH00"></iframe>
-      </div>
       <div id="footer">
         <p>footer text</p>
       </div>
@@ -73,7 +69,7 @@ export default {
 
 .dashboard-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border: 1px solid #000000;
   background-color: grey;
   border-collapse: collapse;
@@ -125,22 +121,5 @@ export default {
 
 #footer p span {
   font-size: 100%;
-}
-
-.map-container {
-  position: relative;
-  width: 80ch;
-  /* Same width as #content */
-  height: 100vh;
-  /* Same height as #content */
-}
-
-.map-iframe {
-  /*to make the iframe fit the entire container*/
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 </style>
