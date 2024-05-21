@@ -8,6 +8,7 @@ import Login from '@/components/LogIn.vue'
 import RegisterAcc from '@/components/RegisterAcc.vue'
 import DashBoard from '@/components/DashBoard.vue'
 import MapPage from '@/components/MapPage.vue'
+import UserProfile from '@/components/UserProfile.vue'
 
 // link route to view component
 const routes = [
@@ -29,7 +30,7 @@ const routes = [
       { path: '/dashboard/menu item3', component: MapPage },
       { path: '/dashboard/menu item4', component: MapPage },
       { path: '/dashboard/menu item5', component: MapPage },
-      { path: '/dashboard/menu item6', component: MapPage },
+      { path: '/dashboard/profile', component: UserProfile },
     ],
   },
   { path: '/map', component: MapPage },

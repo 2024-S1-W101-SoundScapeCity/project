@@ -29,7 +29,7 @@ export default {
         { name: 'Menu Item 3', route: '/dashboard/menu item3' },
         { name: 'Menu Item 4', route: '/dashboard/menu item4' },
         { name: 'Menu Item 5', route: '/dashboard/menu item5' },
-        { name: 'Menu Item 6', route: '/dashboard/menu item6' },
+        { name: 'User Profile', route: '/dashboard/profile' },
       ],
     }
   },
