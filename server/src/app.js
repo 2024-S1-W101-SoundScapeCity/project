@@ -12,7 +12,7 @@ app.use(bodyparser.json())
 app.use(cors())
 
 // serve static files from vue production folder client/dist
-const distPath = path.join('..', 'client', 'dist')
+const distPath = path.resolve(__dirname, '..', '..', 'client', 'dist')
 const staticFileMiddleware = express.static(distPath)
 app.use(staticFileMiddleware)
 
@@ -40,7 +40,7 @@ app.get('*', (req, res) => {
     'Content-Security-Policy-Report-Only',
     "default-src 'self'; script-src 'self' 'unsafe-inline' http://localhost:8080 http://localhost:8098; connect-src 'self' ws://localhost:8080 ws://localhost:8098;"
   )
-  res.send(path.join(distPath, 'index.html'))
+  res.sendFile(path.join(distPath, 'index.html'))
 })
 // define and listen on port
 const port = process.env.PORT || 8081

@@ -1,3 +1,6 @@
+# Soundscape City is a online website that allows users to browse and discover sounds from across the globe.
+We use a map based system to discover music and ambient sounds.
+
 ## Accessing Soundscape City
 https://soundscape-city.web.app/
 

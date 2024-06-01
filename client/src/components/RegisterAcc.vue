@@ -57,7 +57,7 @@ export default {
           email: this.email,
           name: this.name,
           created: Timestamp.fromDate(new Date()),
-          accountId: userRef.id,
+          accountId: userCred.user.uid,
         }
         await setDoc(userRef, userData)
         console.log('user created')
