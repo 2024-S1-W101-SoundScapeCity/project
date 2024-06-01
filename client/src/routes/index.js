@@ -33,7 +33,7 @@ const routes = [
       { path: '/dashboard/profile', component: UserProfile },
     ],
   },
-  { path: '/map', component: MapPage },
+  { path: '/map', component: MapPage, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({

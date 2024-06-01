@@ -11,7 +11,7 @@
       <button class="logout-button" @click="logout">Logout</button>
     </div>
     <div class="dashboard-container">
-      <div id="tab-content">
+      <div class="tab-content" id="app">
         <router-view></router-view>
       </div>
       <div id="footer">
@@ -55,6 +55,11 @@ export default {
       }).catch((error) => {
         console.error('Error signing out:', error);
       });
+    },
+  },
+  watch: {
+    $route(to, from) {
+      console.log('route changed from ' + from.path + ' to ' + to.path)
     },
   },
 }
@@ -110,7 +115,7 @@ export default {
   height: 6vw;
 }
 
-.dashboard-container #content {
+.dashboard-container .content {
   width: 80ch;
   height: 100vh;
   border: 1px solid #000000;
@@ -118,7 +123,7 @@ export default {
   flex: initial;
 }
 
-.dashboard-container #tab-content {
+.dashboard-container .tab-content {
   border: 1px solid #000000;
   flex: auto;
 }

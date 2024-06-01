@@ -42,6 +42,7 @@ app.get('*', (req, res) => {
   )
   res.sendFile(path.join(distPath, 'index.html'))
 })
+
 // define and listen on port
 const port = process.env.PORT || 8081
 app.listen(port, () => {

@@ -10,10 +10,7 @@
 
 <script>
 export default {
-  name: 'MapPage',
-  props: {
-    msg: String
-  }
+  name: 'MapPage'
 }
 </script>
 

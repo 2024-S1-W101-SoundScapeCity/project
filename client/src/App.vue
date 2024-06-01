@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    {{ output }}
   </div>
 </template>
 
@@ -13,12 +14,16 @@ export default {
   components: {
     RouterView,
   },
+  data() {
+    return {
+      output: null
+    }
+  },
   methods: {
     async fetchGreeting() {
       try{
         const response = await api.get('/')
         console.log(response)
-
       } catch(error) {
         console.error('Error fetching greeting: ', error)
       }
