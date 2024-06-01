@@ -37,6 +37,9 @@ export default {
       this.isLoading = true;
       try {
         await signInWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCred) => {
+          localStorage.setItem('userCred', userCred.user.accessToken)
+        })
         this.$router.push('/dashboard')
       } catch (error) {
         this.error = error.message

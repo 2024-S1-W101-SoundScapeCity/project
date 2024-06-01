@@ -1,6 +1,5 @@
 // This file is used to link the urls to vue components
 import { createWebHistory, createRouter } from 'vue-router'
-import { auth } from '@/firebase'
 
 // import vue components
 import HomePage from '@/components/HomePage.vue'
@@ -44,8 +43,8 @@ const router = createRouter({
 // Global router guards ensure user has the correct authentication to access
 // the requested webpage
 router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('userCred')
   const requiresAuth = to.matched.some((route) => route.meta.requiresAuth)
-  const isAuthenticated = auth.currentUser
 
   if (requiresAuth && !isAuthenticated) {
     next('/login')
