@@ -3,8 +3,8 @@
     <div id="menu">
       <div id="placeholder">logo</div>
       <button v-for="tab in tabs" v-bind:key="tab.name"
-        v-bind:class="['tab-button', { active: currentTab === tab.name }]" v-on:click="currentTab = tab.name"
-        @click="navigateToTab(tab.route)">
+        v-bind:class="['tab-button', { active: currentTab === tab.name }]"
+        @click="navigateToTab(tab)">
         {{ tab.name }}
       </button>
       <component v-bind:is="currentTabComponent" class="tab-button"></component>
@@ -29,22 +29,25 @@ export default {
       currentTab: 'map',
       tabs: [
         { name: 'map', route: '/dashboard/map' },
-        { name: 'menu item2', route: '/dashboard/menu item2' },
-        { name: 'Menu Item 3', route: '/dashboard/menu item3' },
-        { name: 'Menu Item 4', route: '/dashboard/menu item4' },
-        { name: 'Menu Item 5', route: '/dashboard/menu item5' },
+        { name: 'menu item 2', route: '/dashboard/menuitem2' },
+        { name: 'Menu Item 3', route: '/dashboard/menuitem3' },
+        { name: 'Menu Item 4', route: '/dashboard/menuitem4' },
+        { name: 'Menu Item 5', route: '/dashboard/menuitem5' },
         { name: 'User Profile', route: '/dashboard/profile' },
       ],
     }
   },
   computed: {
     currentTabComponent() {
-      return this.currentTab.name
+      return this.currentTab
     },
   },
   methods: {
-    navigateToTab(route) {
-      this.$router.push(route)
+    navigateToTab(tab) {
+      this.currentTab = tab.name
+      if(this.$route.path !== tab.route) {
+        this.$router.push(tab.route)
+      }
     },
     logout() {
       auth.signOut().then(() => {

@@ -28,15 +28,20 @@ export default {
       email: '',
       password: '',
       error: null,
+      isLoading: false
     }
   },
   methods: {
     async login() {
+      if (this.isLoading) return;
+      this.isLoading = true;
       try {
         await signInWithEmailAndPassword(auth, this.email, this.password)
         this.$router.push('/dashboard')
       } catch (error) {
         this.error = error.message
+      } finally {
+        this.isLoading = false;
       }
     },
     clearForm() {

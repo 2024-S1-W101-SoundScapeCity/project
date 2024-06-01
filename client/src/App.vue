@@ -14,15 +14,20 @@ export default {
     RouterView,
   },
   methods: {
-    fetchGreeting() {
-      api()
-        .get('/')
-        .then((response) => {
-          console.log(response.data)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+    async fetchGreeting() {
+      try{
+        const response = await api.get('/')
+        console.log(response)
+
+      } catch(error) {
+        console.error('Error fetching greeting: ', error)
+      }
+    },
+  },
+  watch: {
+    $route(to, from) {
+      console.log('route changed from ' + from.path + ' to ' + to.path)
+      this.fetchGreeting();
     },
   },
   mounted() {
