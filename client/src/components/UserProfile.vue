@@ -42,8 +42,10 @@ export default {
     try {
       const user = auth.currentUser;
       console.log(user.uid);
+      console.log(user.displayName);
       if (user) {
         const userDocRef = doc(db, 'users', user.uid);
+        console.log(userDocRef);
         const userDocSnapshot = await getDoc(userDocRef);
         if (userDocSnapshot.exists()) {
           this.userData = userDocSnapshot.data();
@@ -64,6 +66,7 @@ export default {
 #data {
   border: 1px solid black;
   margin: auto;
+  margin-bottom: 5%;
   max-width: 80%;
   min-width: 50%;
   min-height: 30vw;
