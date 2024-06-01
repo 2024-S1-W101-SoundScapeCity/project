@@ -8,7 +8,6 @@
         {{ tab.name }}
       </button>
       <component v-bind:is="currentTabComponent" class="tab-button"></component>
-      <button class="logout-button" @click="logout">Logout</button>
     </div>
     <div class="dashboard-container">
       <div id="tab-content">
@@ -18,8 +17,13 @@
         <p>footer text</p>
       </div>
     </div>
+    <div class="logout-container">
+      <button class="logout-button" @click="logout">Logout</button>
+    </div>
   </div>
 </template>
+
+
 <script>
 import { auth } from '@/firebase';
 
@@ -93,7 +97,6 @@ export default {
 }
 
 #menu {
-  float: left;
   text-align: left;
 }
 
@@ -135,9 +138,11 @@ export default {
 }
 
 .logout-button {
+  z-index: 1;
   position: absolute;
   top: 10px;
   right: 10px;
+  float: right;
   padding: 8px 16px;
   border-radius: 10px;
   background-color: #ff5252;
