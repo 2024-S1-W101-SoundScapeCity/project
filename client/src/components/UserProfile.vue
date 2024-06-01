@@ -18,7 +18,8 @@
 </template>
 
 <script>
-import { auth, db, doc, getDoc } from '@/firebase';
+import { auth, db } from '@/firebase';
+import { collection, query, where, getDocs} from 'firebase/firestore';
 
 export default {
   name: 'UserProfile',
@@ -44,11 +45,12 @@ export default {
       console.log(user.uid);
       console.log(user.displayName);
       if (user) {
-        const userDocRef = doc(db, 'users', user.uid);
-        console.log(userDocRef);
-        const userDocSnapshot = await getDoc(userDocRef);
-        if (userDocSnapshot.exists()) {
-          this.userData = userDocSnapshot.data();
+        const userCollectionRef = collection(db, 'users');
+        const q = query(userCollectionRef, where('accountId', '==', user.uid));
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          const doc = querySnapshot.docs[0];
+          this.userData = doc.data();
         } else {
           console.error('User document does not exist.');
         }
