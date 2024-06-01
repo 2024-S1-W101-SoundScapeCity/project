@@ -2,11 +2,13 @@
   <div class="layout">
     <div id="menu">
       <div id="placeholder">logo</div>
-      <button v-for="tab in tabs" v-bind:key="tab.name" v-bind:class="['tab-button', { active: currentTab === tab.name }]"
-        v-on:click="currentTab = tab.name" @click="navigateToTab(tab.route)">
+      <button v-for="tab in tabs" v-bind:key="tab.name"
+        v-bind:class="['tab-button', { active: currentTab === tab.name }]" v-on:click="currentTab = tab.name"
+        @click="navigateToTab(tab.route)">
         {{ tab.name }}
       </button>
       <component v-bind:is="currentTabComponent" class="tab-button"></component>
+      <button class="logout-button" @click="logout">Logout</button>
     </div>
     <div class="dashboard-container">
       <div id="tab-content">
@@ -19,6 +21,8 @@
   </div>
 </template>
 <script>
+import { auth } from '@/firebase';
+
 export default {
   data() {
     return {
@@ -41,6 +45,13 @@ export default {
   methods: {
     navigateToTab(route) {
       this.$router.push(route)
+    },
+    logout() {
+      auth.signOut().then(() => {
+        this.$router.push('/');
+      }).catch((error) => {
+        console.error('Error signing out:', error);
+      });
     },
   },
 }
@@ -121,5 +132,25 @@ export default {
 
 #footer p span {
   font-size: 100%;
+}
+
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #ff0000;
 }
 </style>
