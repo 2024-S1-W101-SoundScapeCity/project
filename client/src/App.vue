@@ -1,63 +1,49 @@
 <template>
   <div id="app">
-    <nav>
-      <!-- Existing navigation code -->
-      <SearchBar @search="handleSearch"/>
-    </nav>
-    <router-view></router-view>
-    {{ output }}
+    <header>
+      <div v-if="!isHomePage" class="search-bar">
+        <input type="text" v-model="query" placeholder="Search..." @input="search">
+        <button @click="search">Enter</button>
+      </div>
+    </header>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import api from '@/services/api'
-import { RouterView } from 'vue-router'
-import SearchBar from './components/SearchBar.vue';
-
 export default {
-  name: 'App',
-  components: {
-    RouterView,
-    SearchBar
-  },
   data() {
     return {
-      output: null
+      query: ''
+    };
+  },
+  computed: {
+    isHomePage() {
+      return this.$route.path === '/';
     }
   },
   methods: {
-    async fetchGreeting() {
-      try {
-        const response = await api.get('/')
-        console.log(response)
-      } catch (error) {
-        console.error('Error fetching greeting: ', error)
-      }
-    },
-    handleSearch(query) {
-      // Implement the search logic here, e.g., filter the list of uploads
-      console.log('Search query:', query);
+    search() {
+      this.$emit('search', this.query);
     }
-  },
-  watch: {
-    $route(to, from) {
-      console.log('route changed from ' + from.path + ' to ' + to.path)
-      this.fetchGreeting();
-    },
-  },
-  mounted() {
-    this.fetchGreeting()
-  },
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.search-bar input {
+  padding: 8px;
+  margin-right: 5px;
+}
+
+.search-bar button {
+  padding: 8px;
 }
 </style>
