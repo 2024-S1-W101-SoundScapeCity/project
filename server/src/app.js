@@ -11,20 +11,6 @@ app.use(bodyparser.json())
 // cors
 app.use(cors())
 
-// serve static files from vue production folder client/dist
-const distPath = path.resolve(__dirname, '..', '..', 'client', 'dist')
-const staticFileMiddleware = express.static(distPath)
-app.use(staticFileMiddleware)
-
-// history middleware
-app.use(history({ disableDotRule: true, verbose: true }))
-// app.use(customHist())
-
-// define api route to vue components
-// app.get('/', (req, res) => {
-//   res.json({ message: 'successful connection to the server!' })
-// })
-
 // set secure content policy for all header files
 app.use((req, res, next) => {
   res.setHeader(
@@ -34,6 +20,20 @@ app.use((req, res, next) => {
   next()
 })
 
+// history middleware
+app.use(history({
+  disableDotRule: true,
+  verbose: true,
+  rewrites: [
+    { from: /^\/.*$/, to: '/index.html' }
+  ]
+}))
+
+// serve static files from vue production folder client/dist
+const distPath = path.resolve(__dirname, '..', '..', 'client', 'dist')
+const staticFileMiddleware = express.static(distPath)
+app.use(staticFileMiddleware)
+
 // define 404 route in express
 app.get('*', (req, res) => {
   res.setHeader(
@@ -42,6 +42,7 @@ app.get('*', (req, res) => {
   )
   res.sendFile(path.join(distPath, 'index.html'))
 })
+
 // define and listen on port
 const port = process.env.PORT || 8081
 app.listen(port, () => {

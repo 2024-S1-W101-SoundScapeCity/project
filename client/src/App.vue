@@ -1,43 +1,50 @@
+<!-- App.vue -->
 <template>
   <div id="app">
+    <header>
+      <div v-if="!isHomePage" class="search-bar">
+        <input type="text" v-model="query" placeholder="Search..." @input="search">
+        <button @click="search">Enter</button>
+      </div>
+    </header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import api from '@/services/api'
-import { RouterView } from 'vue-router'
-
 export default {
-  name: 'App',
-  components: {
-    RouterView,
+  data() {
+    return {
+      query: ''
+    };
+  },
+  computed: {
+    isHomePage() {
+      return this.$route.path === '/';
+    }
   },
   methods: {
-    fetchGreeting() {
-      api()
-        .get('/')
-        .then((response) => {
-          console.log(response.data)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    },
-  },
-  mounted() {
-    this.fetchGreeting()
-  },
+    search() {
+      this.$emit('search', this.query);
+    }
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.search-bar input {
+  padding: 8px;
+  margin-right: 5px;
+}
+
+.search-bar button {
+  padding: 8px;
 }
 </style>

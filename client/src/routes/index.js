@@ -1,6 +1,5 @@
 // This file is used to link the urls to vue components
 import { createWebHistory, createRouter } from 'vue-router'
-import { auth } from '@/firebase'
 
 // import vue components
 import HomePage from '@/components/HomePage.vue'
@@ -25,15 +24,11 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       { path: '', redirect: '/dashboard/map' }, // default, redirect to first tab
-      { path: '/dashboard/map', component: MapPage },
-      { path: '/dashboard/menu item2', component: MapPage }, // relink paths to other components
-      { path: '/dashboard/menu item3', component: MapPage },
-      { path: '/dashboard/menu item4', component: MapPage },
-      { path: '/dashboard/menu item5', component: MapPage },
+      { path: 'Map', component: MapPage },
       { path: '/dashboard/profile', component: UserProfile },
     ],
   },
-  { path: '/map', component: MapPage },
+  { path: '/map', component: MapPage, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({
@@ -44,8 +39,8 @@ const router = createRouter({
 // Global router guards ensure user has the correct authentication to access
 // the requested webpage
 router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('userCred')
   const requiresAuth = to.matched.some((route) => route.meta.requiresAuth)
-  const isAuthenticated = auth.currentUser
 
   if (requiresAuth && !isAuthenticated) {
     next('/login')

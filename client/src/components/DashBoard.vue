@@ -1,61 +1,76 @@
+<!-- DashBoard.vue -->
 <template>
   <div class="layout">
+    <div id="logo">
+        <img src="../assets/logo.png">
+      </div>
     <div id="menu">
-      <div id="placeholder">logo</div>
       <button v-for="tab in tabs" v-bind:key="tab.name"
-        v-bind:class="['tab-button', { active: currentTab === tab.name }]" v-on:click="currentTab = tab.name"
-        @click="navigateToTab(tab.route)">
+        v-bind:class="['tab-button', { active: currentTab === tab.name }]" @click="navigateToTab(tab)">
         {{ tab.name }}
       </button>
-      <component v-bind:is="currentTabComponent" class="tab-button"></component>
-      <button class="logout-button" @click="logout">Logout</button>
     </div>
     <div class="dashboard-container">
-      <div id="tab-content">
+      <div class="tab-content" id="app">
         <router-view></router-view>
       </div>
       <div id="footer">
         <p>footer text</p>
       </div>
     </div>
+    <div class="logout-container">
+      <button class="logout-button" @click="logout">Logout</button>
+    </div>
   </div>
 </template>
+
 <script>
-import { auth } from '@/firebase';
+import { auth } from '@/firebase'
+import MapPage from '@/components/MapPage.vue'
+import UserProfile from '@/components/UserProfile.vue'
 
 export default {
   data() {
     return {
       currentTab: 'map',
       tabs: [
-        { name: 'map', route: '/dashboard/map' },
-        { name: 'menu item2', route: '/dashboard/menu item2' },
-        { name: 'Menu Item 3', route: '/dashboard/menu item3' },
-        { name: 'Menu Item 4', route: '/dashboard/menu item4' },
-        { name: 'Menu Item 5', route: '/dashboard/menu item5' },
+        { name: 'Map', route: '/dashboard/map' },
         { name: 'User Profile', route: '/dashboard/profile' },
       ],
+      tabComponents: {
+        'Map': MapPage,
+        'User Profile': UserProfile,
+      }
     }
   },
   computed: {
     currentTabComponent() {
-      return this.currentTab.name
+      return this.tabComponents[this.currentTab]
     },
   },
   methods: {
-    navigateToTab(route) {
-      this.$router.push(route)
+    navigateToTab(tab) {
+      this.currentTab = tab.name
+      if (this.$route.path !== tab.route) {
+        this.$router.push(tab.route)
+      }
     },
     logout() {
       auth.signOut().then(() => {
-        this.$router.push('/');
+        this.$router.push('/')
       }).catch((error) => {
         console.error('Error signing out:', error);
       });
     },
   },
+  watch: {
+    $route(to, from) {
+      console.log('route changed from ' + from.path + ' to ' + to.path)
+    },
+  },
 }
 </script>
+
 <style scoped>
 .tab-button {
   padding: 6px 10px;
@@ -93,29 +108,30 @@ export default {
 }
 
 #menu {
-  float: left;
   text-align: left;
+  margin: auto;
 }
 
-#menu img {
-  size: 10%;
+#logo {
+  top: 10px;
+  float: left;
+  margin-bottom: -6ch;
+  margin-top: -6ch;
 }
 
-#menu #placeholder {
-  background-color: grey;
-  width: 18vw;
-  height: 6vw;
+#logo img {
+  width: 20ch;
+  height: auto;
 }
 
-.dashboard-container #content {
+.dashboard-container .content {
   width: 80ch;
-  height: 100vh;
   border: 1px solid #000000;
   background-color: #4f4f4f;
   flex: initial;
 }
 
-.dashboard-container #tab-content {
+.dashboard-container .tab-content {
   border: 1px solid #000000;
   flex: auto;
 }
@@ -135,9 +151,11 @@ export default {
 }
 
 .logout-button {
+  z-index: 1;
   position: absolute;
   top: 10px;
   right: 10px;
+  float: right;
   padding: 8px 16px;
   border-radius: 10px;
   background-color: #ff5252;

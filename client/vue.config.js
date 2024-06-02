@@ -4,7 +4,7 @@ const BundleAnalyzerPlugin =
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: '',
+  publicPath: '/',
   configureWebpack: {
     plugins:
       process.env.NODE_ENV === 'production' ? [new BundleAnalyzerPlugin()] : [],

@@ -3,12 +3,13 @@
     <h1>{{ msg }}</h1>
     <p>User Profile</p>
     <div id="data">
-      <div v-if="userData">
-        <p>Account ID: {{ userData.accountId }}</p>
-        <p>Account Type: {{ userData.accountType }}</p>
-        <p>Created: {{ formatDate(userData.created) }}</p>
-        <p>Email: {{ userData.email }}</p>
-        <p>Name: {{ userData.name }}</p>
+      <div id="userData" v-if="userData">
+        <p><span class="tag">Name:</span> {{ userData.name }}</p>
+        <p><span class="tag">Email:</span> {{ userData.email }}</p>
+        <p><span class="tag">Created:</span> {{ formatDate(userData.created) }}</p>
+        <p><span class="tag">Account Type:</span> {{ userData.accountType }}</p>
+        <p v-if="userData.accountType === 'Admin'"><span class="tag">Account ID:</span> <span class="account-id">{{ userData.accountId }}</span></p>
+        <!--TODO: ADD PROFILE CONTROL BUTTONS HERE-->
       </div>
       <div v-else>
         Loading user data...
@@ -65,30 +66,38 @@ export default {
 </script>
 
 <style scoped>
+.profile {
+  text-align: center;
+}
+
 #data {
-  border: 1px solid black;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   margin: auto;
-  margin-bottom: 5%;
-  max-width: 80%;
-  min-width: 50%;
-  min-height: 30vw;
+  margin-bottom: 3ch;
+  margin-top: 3ch;
+  max-width: 60%;
+  min-width: 40%;
+  padding: 20px;
 }
 
-h3 {
-  margin: 40px 0 0;
+p {
+  margin: 10px 0;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.loading {
+  font-style: italic;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+.account-id {
+  color:darkgreen;
 }
 
-a {
-  color: #42b983;
+.tag {
+  font-weight: bold;
+}
+
+#userData {
+  text-align: left;
 }
 </style>
