@@ -25,10 +25,6 @@ const routes = [
     children: [
       { path: '', redirect: '/dashboard/map' }, // default, redirect to first tab
       { path: 'map', component: MapPage },
-      { path: '/dashboard/menuitem2', component: MapPage }, // relink paths to other components
-      { path: '/dashboard/menuitem3', component: MapPage },
-      { path: '/dashboard/menuitem4', component: MapPage },
-      { path: '/dashboard/menuitem5', component: MapPage },
       { path: '/dashboard/profile', component: UserProfile },
     ],
   },

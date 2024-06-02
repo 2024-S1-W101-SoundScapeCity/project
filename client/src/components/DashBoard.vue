@@ -34,18 +34,10 @@ export default {
       currentTab: 'map',
       tabs: [
         { name: 'map', route: '/dashboard/map' },
-        { name: 'menu item 2', route: '/dashboard/menuitem2' },
-        { name: 'Menu Item 3', route: '/dashboard/menuitem3' },
-        { name: 'Menu Item 4', route: '/dashboard/menuitem4' },
-        { name: 'Menu Item 5', route: '/dashboard/menuitem5' },
         { name: 'User Profile', route: '/dashboard/profile' },
       ],
       tabComponents: {
         'map': MapPage,
-        'menu item 2': MapPage,
-        'Menu Item 3': MapPage,
-        'Menu Item 4': MapPage,
-        'Menu Item 5': MapPage,
         'User Profile': UserProfile,
       }
     }
