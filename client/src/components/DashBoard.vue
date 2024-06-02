@@ -23,9 +23,10 @@
   </div>
 </template>
 
-
 <script>
-import { auth } from '@/firebase';
+import { auth } from '@/firebase'
+import MapPage from '@/components/MapPage.vue'
+import UserProfile from '@/components/UserProfile.vue'
 
 export default {
   data() {
@@ -39,11 +40,19 @@ export default {
         { name: 'Menu Item 5', route: '/dashboard/menuitem5' },
         { name: 'User Profile', route: '/dashboard/profile' },
       ],
+      tabComponents: {
+        'map': MapPage,
+        'menu item 2': MapPage,
+        'Menu Item 3': MapPage,
+        'Menu Item 4': MapPage,
+        'Menu Item 5': MapPage,
+        'User Profile': UserProfile,
+      }
     }
   },
   computed: {
     currentTabComponent() {
-      return this.currentTab
+      return this.tabComponents[this.currentTab]
     },
   },
   methods: {
@@ -55,7 +64,7 @@ export default {
     },
     logout() {
       auth.signOut().then(() => {
-        this.$router.push('/');
+        this.$router.push('/')
       }).catch((error) => {
         console.error('Error signing out:', error);
       });
@@ -68,6 +77,7 @@ export default {
   },
 }
 </script>
+
 <style scoped>
 .tab-button {
   padding: 6px 10px;
