@@ -22,7 +22,7 @@ export default {
 <style scoped>
 .map {
   position: relative;
-  height: 100vh;
+  height: 73vh;
   display: flex;
   align-items: center;
   justify-content: center;

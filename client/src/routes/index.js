@@ -24,7 +24,7 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       { path: '', redirect: '/dashboard/map' }, // default, redirect to first tab
-      { path: 'map', component: MapPage },
+      { path: 'Map', component: MapPage },
       { path: '/dashboard/profile', component: UserProfile },
     ],
   },

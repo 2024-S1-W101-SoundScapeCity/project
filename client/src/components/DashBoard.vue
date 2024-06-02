@@ -1,11 +1,12 @@
 <!-- DashBoard.vue -->
 <template>
   <div class="layout">
+    <div id="logo">
+        <img src="../assets/logo.png">
+      </div>
     <div id="menu">
-      <div id="placeholder">logo</div>
       <button v-for="tab in tabs" v-bind:key="tab.name"
-        v-bind:class="['tab-button', { active: currentTab === tab.name }]"
-        @click="navigateToTab(tab)">
+        v-bind:class="['tab-button', { active: currentTab === tab.name }]" @click="navigateToTab(tab)">
         {{ tab.name }}
       </button>
     </div>
@@ -33,11 +34,11 @@ export default {
     return {
       currentTab: 'map',
       tabs: [
-        { name: 'map', route: '/dashboard/map' },
+        { name: 'Map', route: '/dashboard/map' },
         { name: 'User Profile', route: '/dashboard/profile' },
       ],
       tabComponents: {
-        'map': MapPage,
+        'Map': MapPage,
         'User Profile': UserProfile,
       }
     }
@@ -50,7 +51,7 @@ export default {
   methods: {
     navigateToTab(tab) {
       this.currentTab = tab.name
-      if(this.$route.path !== tab.route) {
+      if (this.$route.path !== tab.route) {
         this.$router.push(tab.route)
       }
     },
@@ -108,21 +109,23 @@ export default {
 
 #menu {
   text-align: left;
+  margin: auto;
 }
 
-#menu img {
-  size: 10%;
+#logo {
+  top: 10px;
+  float: left;
+  margin-bottom: -6ch;
+  margin-top: -6ch;
 }
 
-#menu #placeholder {
-  background-color: grey;
-  width: 18vw;
-  height: 6vw;
+#logo img {
+  width: 20ch;
+  height: auto;
 }
 
 .dashboard-container .content {
   width: 80ch;
-  height: 100vh;
   border: 1px solid #000000;
   background-color: #4f4f4f;
   flex: initial;
