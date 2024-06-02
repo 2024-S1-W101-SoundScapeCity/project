@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <nav>
+      <!-- Existing navigation code -->
+      <SearchBar @search="handleSearch"/>
+    </nav>
     <router-view></router-view>
     {{ output }}
   </div>
@@ -8,11 +12,13 @@
 <script>
 import api from '@/services/api'
 import { RouterView } from 'vue-router'
+import SearchBar from './components/SearchBar.vue';
 
 export default {
   name: 'App',
   components: {
     RouterView,
+    SearchBar
   },
   data() {
     return {
@@ -21,13 +27,17 @@ export default {
   },
   methods: {
     async fetchGreeting() {
-      try{
+      try {
         const response = await api.get('/')
         console.log(response)
-      } catch(error) {
+      } catch (error) {
         console.error('Error fetching greeting: ', error)
       }
     },
+    handleSearch(query) {
+      // Implement the search logic here, e.g., filter the list of uploads
+      console.log('Search query:', query);
+    }
   },
   watch: {
     $route(to, from) {
