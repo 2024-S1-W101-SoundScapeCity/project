@@ -1,3 +1,4 @@
+<!-- DashBoard.vue -->
 <template>
   <div class="layout">
     <div id="menu">
@@ -7,7 +8,6 @@
         @click="navigateToTab(tab)">
         {{ tab.name }}
       </button>
-      <component v-bind:is="currentTabComponent" class="tab-button"></component>
     </div>
     <div class="dashboard-container">
       <div class="tab-content" id="app">

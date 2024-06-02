@@ -1,3 +1,4 @@
+<!-- App.vue -->
 <template>
   <div id="app">
     <header>
@@ -6,7 +7,7 @@
         <button @click="search">Enter</button>
       </div>
     </header>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
