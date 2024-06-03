@@ -2,7 +2,7 @@
 <template>
   <div class="layout">
     <div id="logo">
-        <img src="../assets/logo.png">
+        <img src="@/assets/logo.png">
       </div>
     <div id="menu">
       <button v-for="tab in tabs" v-bind:key="tab.name"
@@ -97,9 +97,11 @@ export default {
   display: flex;
   flex-direction: column;
   border: 1px solid #000000;
-  background-color: grey;
+  background-color: #474c4f;
   border-collapse: collapse;
   margin: 5px;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .layout {
