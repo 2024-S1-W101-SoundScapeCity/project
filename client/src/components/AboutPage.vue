@@ -32,7 +32,12 @@
 export default {
   methods: {
     goToMap() {
+      if (localStorage.getItem('userCred')) {
       this.$router.push('/dashboard/map');
+      }
+      else {
+        this.$router.push('/');
+      }
     }
   }
 }
