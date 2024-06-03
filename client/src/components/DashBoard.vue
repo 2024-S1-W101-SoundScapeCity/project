@@ -141,9 +141,16 @@ export default {
 }
 
 #footer {
-  text-decoration: none;
   text-align: center;
-  float: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
 }
 
 #footer p {
