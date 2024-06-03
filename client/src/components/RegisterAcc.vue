@@ -22,7 +22,6 @@ import {
   auth,
   createUserWithEmailAndPassword,
   updateProfile,
-  collection,
   db,
   Timestamp,
   setDoc,
@@ -51,7 +50,7 @@ export default {
         await updateProfile(userCred.user, { displayName: this.name })
 
         // add user info to user collection
-        const userRef = doc(collection(db, 'users'))
+        const userRef = doc(db, 'users', userCred.user.uid);
         const userData = {
           accountType: 'Regular',
           email: this.email,
@@ -59,8 +58,8 @@ export default {
           created: Timestamp.fromDate(new Date()),
           accountId: userCred.user.uid,
         }
-        await setDoc(userRef, userData)
-        console.log('user created')
+        await setDoc(userRef, userData);
+        console.log('user created: ' + userCred.user.uid);
 
         // redirect to dashboard
         this.$router.push('/dashboard')
