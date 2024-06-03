@@ -1,6 +1,6 @@
 <template>
+  {{ msg }}
   <div class="profile">
-    <h1>{{ msg }}</h1>
     <h2 class="title">User Profile</h2>
     <div id="data" v-if="userData">
       <div id="userData">

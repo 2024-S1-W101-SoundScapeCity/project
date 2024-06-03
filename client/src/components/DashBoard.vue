@@ -1,26 +1,33 @@
 <!-- DashBoard.vue -->
 <template>
   <div class="layout">
-    <div id="logo">
-        <img src="@/assets/logo.png">
+    <header>
+      <div class="search-bar">
+        <input type="text" v-model="query" placeholder="Search..." @input="search">
+        <button @click="search">Enter</button>
       </div>
-    <div id="menu">
-      <button v-for="tab in tabs" v-bind:key="tab.name"
-        v-bind:class="['tab-button', { active: currentTab === tab.name }]" @click="navigateToTab(tab)">
-        {{ tab.name }}
-      </button>
+    </header>
+    <div id="logo">
+      <img src="@/assets/logo.png">
     </div>
+      <div v-if="authenticated" id="menu">
+        <button v-for="tab in tabs" v-bind:key="tab.name"
+          v-bind:class="['tab-button', { active: currentTab === tab.name }]" @click="navigateToTab(tab)">
+          {{ tab.name }}
+        </button>
+      </div>
+      <div v-else style="margin-top: 4ch;"></div>
     <div class="dashboard-container">
       <div class="tab-content" id="app">
         <router-view></router-view>
       </div>
       <div id="footer">
-        <img src="../assets/logo.png" alt="SoundScape City Logo" class="footer-logo"/>
+        <img src="../assets/logo.png" alt="SoundScape City Logo" class="footer-logo" />
         <span>SoundScape City</span>
-        <a href="about.vue">About</a>
+        <a href="#" @click="navigateToAbout()">About</a>
       </div>
     </div>
-    <div class="logout-container">
+    <div v-if="authenticated" class="logout-container">
       <button class="logout-button" @click="logout">Logout</button>
     </div>
   </div>
@@ -28,6 +35,7 @@
 
 <script>
 import { auth } from '@/firebase'
+import { onAuthStateChanged } from 'firebase/auth';
 import MapPage from '@/components/MapPage.vue'
 import UserProfile from '@/components/UserProfile.vue'
 
@@ -42,8 +50,17 @@ export default {
       tabComponents: {
         'Map': MapPage,
         'User Profile': UserProfile,
-      }
+      },
+      authenticated: false,
     }
+  },
+  created() {
+    if(localStorage.getItem('userCred')) {
+      this.authenticated = true;
+    }
+    onAuthStateChanged(auth, (user) => {
+      this.authenticated = !!user;
+    });
   },
   computed: {
     currentTabComponent() {
@@ -57,9 +74,16 @@ export default {
         this.$router.push(tab.route)
       }
     },
+    navigateToAbout() {
+      this.currentTab = "About";
+      if (this.$route.path !== "About") {
+        this.$router.push("/about");
+      }
+    },
     logout() {
       auth.signOut().then(() => {
-        this.$router.push('/')
+        localStorage.removeItem('userCred');
+        this.$router.push('/');
       }).catch((error) => {
         console.error('Error signing out:', error);
       });
@@ -182,5 +206,21 @@ export default {
 
 .logout-button:hover {
   background-color: #ff0000;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.search-bar input {
+  padding: 8px;
+  margin-right: 5px;
+}
+
+.search-bar button {
+  padding: 8px;
 }
 </style>
