@@ -20,7 +20,8 @@
 
 <script>
 import { auth, db } from '@/firebase';
-import { collection, query, where, getDocs} from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export default {
   name: 'UserProfile',
@@ -38,14 +39,10 @@ export default {
         return timestamp.toDate().toLocaleString();
       }
       return 'Invalid Date';
-    }
-  },
-  async created() {
-    try {
-      const user = auth.currentUser;
-      console.log(user.uid);
-      console.log(user.displayName);
-      if (user) {
+    },
+    async loadUserData(user) {
+      try {
+        console.log("Loading user ID: " + user.uid);
         const userCollectionRef = collection(db, 'users');
         const q = query(userCollectionRef, where('accountId', '==', user.uid));
         const querySnapshot = await getDocs(q);
@@ -55,12 +52,19 @@ export default {
         } else {
           console.error('User document does not exist.');
         }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+  },
+  created() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.loadUserData(user);
       } else {
         console.error('No user signed in.');
       }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
+    });
   }
 };
 </script>
