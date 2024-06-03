@@ -42,7 +42,7 @@ import UserProfile from '@/components/UserProfile.vue'
 export default {
   data() {
     return {
-      currentTab: 'Map',
+      currentTab: '',
       tabs: [
         { name: 'Map', icon: require('@/assets/icons/map_24dp_FILL0_wght400_GRAD0_opsz24.svg'), route: '/dashboard/map' },
         { name: 'User Profile', icon: require('@/assets/icons/person_24dp_FILL0_wght400_GRAD0_opsz24.svg'), route: '/dashboard/profile' },
@@ -88,11 +88,25 @@ export default {
         console.error('Error signing out:', error);
       });
     },
+    updateCurrentTab() {
+      const currentPath = this.$route.path;
+      const matchingTab = this.tabs.find(tab => tab.route === currentPath);
+      if (matchingTab) {
+        this.currentTab = matchingTab.name;
+      } else {
+        this.currentTab = 'Map'; //default
+      }
+    },
   },
   watch: {
     $route(to, from) {
       console.log('route changed from ' + from.path + ' to ' + to.path)
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.updateCurrentTab();
+    });
   },
 }
 </script>
