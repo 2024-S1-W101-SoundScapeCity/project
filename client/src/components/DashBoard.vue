@@ -13,7 +13,7 @@
       <div v-if="authenticated" id="menu">
         <button v-for="tab in tabs" v-bind:key="tab.name"
           v-bind:class="['tab-button', { active: currentTab === tab.name }]" @click="navigateToTab(tab)">
-          {{ tab.name }}
+          <span>{{ tab.name }}</span> &nbsp; <img :src="tab.icon" class="tab-icon">
         </button>
       </div>
       <div v-else style="margin-top: 4ch;"></div>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div v-if="authenticated" class="logout-container">
-      <button class="logout-button" @click="logout">Logout</button>
+      <button class="logout-button" @click="logout">Logout<img src="@/assets/icons/logout_24dp_FILL0_wght400_GRAD0_opsz24.svg"></button>
     </div>
   </div>
 </template>
@@ -44,8 +44,8 @@ export default {
     return {
       currentTab: 'Map',
       tabs: [
-        { name: 'Map', route: '/dashboard/map' },
-        { name: 'User Profile', route: '/dashboard/profile' },
+        { name: 'Map', icon: require('@/assets/icons/map_24dp_FILL0_wght400_GRAD0_opsz24.svg'), route: '/dashboard/map' },
+        { name: 'User Profile', icon: require('@/assets/icons/person_24dp_FILL0_wght400_GRAD0_opsz24.svg'), route: '/dashboard/profile' },
       ],
       tabComponents: {
         'Map': MapPage,
@@ -99,33 +99,51 @@ export default {
 
 <style scoped>
 .tab-button {
-  padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  padding: 1ch 2ch;
+  border-top-left-radius: 1ch;
+  border-top-right-radius: 1ch;
   border: 1px solid #ccffdd;
   cursor: pointer;
   background: #ccffdd;
   margin-bottom: -1px;
   margin-right: -1px;
+  align-items: center;
+}
+
+#menu {
+  text-align: left;
+  margin: auto;
 }
 
 #menu button.active {
-  padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border: 1px solid #ccffdd;
   background: #20eec5;
-  margin-bottom: -1px;
-  margin-right: -1px;
+  padding-top: 1.5ch;
+}
+
+#menu button:hover:not(.active) {
+  filter: brightness(90%);
+  fill: black;
+}
+
+#menu.tab-icon {
+  float: right;
+  top: 0;
+}
+
+#menu button span {
+  font-weight: 700;
+  float: left;
+  margin-top: 0.5ch;
 }
 
 .dashboard-container {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   border: 1px solid #000000;
   background-color: #474c4f;
   border-collapse: collapse;
-  margin: 5px;
+  margin: 0 1ch;
   color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -133,11 +151,6 @@ export default {
 .layout {
   display: flex;
   flex-direction: column;
-}
-
-#menu {
-  text-align: left;
-  margin: auto;
 }
 
 #logo {
@@ -202,6 +215,12 @@ export default {
   font-weight: bold;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
+}
+
+.logout-button>img {
+  float: right;
+  margin-top: -0.28ch;
+  margin-left: 1ch;
 }
 
 .logout-button:hover {
