@@ -8,6 +8,8 @@ import RegisterAcc from '@/components/RegisterAcc.vue'
 import DashBoard from '@/components/DashBoard.vue'
 import MapPage from '@/components/MapPage.vue'
 import UserProfile from '@/components/UserProfile.vue'
+import AboutPage from '@/components/AboutPage.vue'
+
 
 // link route to view component
 const routes = [
@@ -29,6 +31,7 @@ const routes = [
     ],
   },
   { path: '/map', component: MapPage, meta: { requiresAuth: true } },
+  { path: '/about', component: AboutPage, meta: { requiresAuth: false} },
 ]
 
 const router = createRouter({
