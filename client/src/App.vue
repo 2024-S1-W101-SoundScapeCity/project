@@ -20,7 +20,9 @@ export default {
   },
   computed: {
     isHomePage() {
-      return this.$route.path === '/';
+      return this.$route.path === '/'
+      || this.$route.path === '/login'
+      || this.$route.path === '/register';
     }
   },
   methods: {

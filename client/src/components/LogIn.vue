@@ -2,15 +2,14 @@
   <div class="background-video-container">
     <video autoplay muted loop id="background-video">
       <source src="@/assets/earth-from-space.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
     <div class="content-overlay">
       <div id="login">
         <h1>Login</h1>
         <div v-if="error" class="error-page">
-          {{ error }}
-          <button @click="clearForm">Retry</button>
-          <button @click="loadRegister">Create Account</button>
+          <span>There was an error logging you in.<br>
+            Check your username and password are correct.<br>
+            If you don't have an account, you can <a @click="loadRegister">create one by clicking here.</a> </span>
         </div>
         <form class="login-form" @submit.prevent="login">
           <input id="email" type="text" placeholder="Email" v-model="email" />
@@ -109,6 +108,8 @@ export default {
   width: 400px;
   max-width: 100%;
   text-align: left;
+  padding-top: 1ch;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .error-page {
@@ -119,9 +120,15 @@ export default {
   margin-bottom: 20px;
 }
 
+.error-page>span>a{
+  cursor: pointer;
+  text-decoration: underline;
+  filter:brightness(85%);
+}
+
 .login-form input {
   display: block;
-  width: 100%;
+  width: 95%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;

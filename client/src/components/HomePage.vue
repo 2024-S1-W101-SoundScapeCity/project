@@ -2,7 +2,6 @@
   <div class="background-video-container">
     <video autoplay muted loop id="background-video">
       <source src="@/assets/earth-from-space.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
     <div class="content-overlay">
       <div id="logo-container">
@@ -76,6 +75,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 #logo-container {

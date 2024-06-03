@@ -34,7 +34,7 @@ import UserProfile from '@/components/UserProfile.vue'
 export default {
   data() {
     return {
-      currentTab: 'map',
+      currentTab: 'Map',
       tabs: [
         { name: 'Map', route: '/dashboard/map' },
         { name: 'User Profile', route: '/dashboard/profile' },

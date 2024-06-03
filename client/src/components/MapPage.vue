@@ -29,15 +29,20 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* prevents ugly blur around the edge*/
 }
 
 .video-background {
   position: absolute;
+  scale: 102%; /* prevents ugly blur around the edge*/
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  overflow: hidden;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
 }
 
 .content-overlay {
