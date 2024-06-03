@@ -157,8 +157,9 @@ export default {
   font-size: 70%;
 }
 
-#footer p span {
+#footer span {
   font-size: 100%;
+  padding-right: 1ch;
 }
 
 .logout-button {
