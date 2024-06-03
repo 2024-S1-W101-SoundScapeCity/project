@@ -15,7 +15,11 @@
         <router-view></router-view>
       </div>
       <div id="footer">
-        <p>footer text</p>
+        <img src="../assets/logo.png" alt="SoundScape City Logo" class="footer-logo"/>
+        <span>SoundScape City</span>
+        <a href="about.vue">About</a>
+        <a href="logIn.vue">Login</a>
+        <a href="RegisterAcc.vue">Register</a>
       </div>
     </div>
     <div class="logout-container">
