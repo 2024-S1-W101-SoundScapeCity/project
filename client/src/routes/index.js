@@ -8,11 +8,20 @@ import RegisterAcc from '@/components/RegisterAcc.vue'
 import DashBoard from '@/components/DashBoard.vue'
 import MapPage from '@/components/MapPage.vue'
 import UserProfile from '@/components/UserProfile.vue'
+import AboutPage from '@/components/AboutPage.vue'
+
 
 // link route to view component
 const routes = [
-  { path: '/', component: HomePage, meta: { requiresAuth: false } },
-  { path: '/login', component: Login, meta: { requiresAuth: false } },
+  { 
+    path: '/', 
+    component: HomePage, 
+    meta: { requiresAuth: false } 
+  },
+  { 
+    path: '/login', 
+    component: Login, 
+    meta: { requiresAuth: false } },
   {
     path: '/register',
     component: RegisterAcc,
@@ -21,14 +30,14 @@ const routes = [
   {
     path: '/dashboard',
     component: DashBoard,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     children: [
-      { path: '', redirect: '/dashboard/map' }, // default, redirect to first tab
-      { path: 'Map', component: MapPage },
-      { path: '/dashboard/profile', component: UserProfile },
+      { path: '', redirect: '/dashboard/map', meta: { requiresAuth: true }}, // default, redirect to first tab
+      { path: '/dashboard/map', component: MapPage, meta: { requiresAuth: true } },
+      { path: '/dashboard/profile', component: UserProfile, meta: { requiresAuth: true } },
+      { path: '/about', component: AboutPage, meta: { requiresAuth: false } },
     ],
   },
-  { path: '/map', component: MapPage, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({
@@ -43,9 +52,9 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((route) => route.meta.requiresAuth)
 
   if (requiresAuth && !isAuthenticated) {
-    next('/login')
+    next('/login');
   } else {
-    next()
+    next();
   }
 })
 // TODO: Redirect after login

@@ -1,5 +1,8 @@
 <template>
   <div class="map">
+    <video autoplay muted loop class="video-background">
+      <source src="@/assets/earth-from-space.mp4" type="video/mp4">
+    </video>
     <div class="content-overlay">
       <button class="explore-button" @click="startExploring">
         Start Exploring
@@ -26,7 +29,21 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0f0f0; /* You can set a background if needed */
+  overflow: hidden; /* prevents ugly blur around the edge*/
+  border-radius: 2ch 2ch 0 0;
+}
+
+.video-background {
+  position: absolute;
+  scale: 102%; /* prevents ugly blur around the edge*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
 }
 
 .content-overlay {
@@ -42,7 +59,7 @@ export default {
   color: white;
   padding: 15px 30px;
   font-size: 20px;
-  border: none;
+  border: 0;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
