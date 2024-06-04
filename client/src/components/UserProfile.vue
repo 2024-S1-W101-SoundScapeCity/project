@@ -1,5 +1,4 @@
 <template>
-  {{ msg }}
   <div class="profile">
     <h2 class="title">User Profile</h2>
     <div id="data" v-if="userData">

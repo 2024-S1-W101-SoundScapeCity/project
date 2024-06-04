@@ -74,7 +74,7 @@ export default {
             this.error = 'This email is already in use.'
             break
           }
-          case 'auth/insufficent-permission': {
+          case 'auth/insufficient-permission': {
             this.error = 'Permissions Error: Please try login'
             console.log(
               'Firebase has encountered a permissions error. Please update'
