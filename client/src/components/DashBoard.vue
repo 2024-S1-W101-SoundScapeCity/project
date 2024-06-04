@@ -38,6 +38,7 @@ import { auth } from '@/firebase'
 import { onAuthStateChanged } from 'firebase/auth';
 import MapPage from '@/components/MapPage.vue'
 import UserProfile from '@/components/UserProfile.vue'
+import SoundPlayer from '@/components/SoundPlayer.vue'
 
 export default {
   data() {
@@ -46,10 +47,12 @@ export default {
       tabs: [
         { name: 'Map', icon: require('@/assets/icons/map_24dp_FILL0_wght400_GRAD0_opsz24.svg'), route: '/dashboard/map' },
         { name: 'User Profile', icon: require('@/assets/icons/person_24dp_FILL0_wght400_GRAD0_opsz24.svg'), route: '/dashboard/profile' },
+        { name: 'Player', icon: require('@/assets/icons/music-svgrepo-com.svg'), route: '/dashboard/soundplayer' },
       ],
       tabComponents: {
         'Map': MapPage,
         'User Profile': UserProfile,
+        'Player': SoundPlayer
       },
       authenticated: false,
     }
@@ -96,7 +99,7 @@ export default {
       } else {
         this.currentTab = 'Map'; //default
       }
-    },
+    }
   },
   watch: {
     $route(to, from) {
