@@ -9,6 +9,7 @@ import DashBoard from '@/components/DashBoard.vue'
 import MapPage from '@/components/MapPage.vue'
 import UserProfile from '@/components/UserProfile.vue'
 import AboutPage from '@/components/AboutPage.vue'
+import SoundPlayer from '@/components/SoundPlayer.vue'
 
 
 // link route to view component
@@ -36,8 +37,14 @@ const routes = [
       { path: '/dashboard/map', component: MapPage, meta: { requiresAuth: true } },
       { path: '/dashboard/profile', component: UserProfile, meta: { requiresAuth: true } },
       { path: '/about', component: AboutPage, meta: { requiresAuth: false } },
+      { path: '/dashboard/soundplayer', component: SoundPlayer, meta: { requiresAuth: true } }
     ],
   },
+  {
+    path: '/soundplayer',
+    component: SoundPlayer,
+    meta: { requiresAuth: true },
+  }
 ]
 
 const router = createRouter({
