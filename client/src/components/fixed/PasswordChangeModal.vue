@@ -99,6 +99,7 @@ button {
     font-weight: bold;
     background-color: grey;
     color: white;
+    cursor: pointer;
 }
 
 .error {
