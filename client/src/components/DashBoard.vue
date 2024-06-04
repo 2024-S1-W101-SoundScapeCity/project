@@ -155,6 +155,7 @@ export default {
   display: flex;
   flex-direction: column;
   border: 1px solid #000000;
+  border-radius: 2ch;
   background-color: #474c4f;
   border-collapse: collapse;
   margin: 0 1ch;
@@ -182,12 +183,13 @@ export default {
 .dashboard-container .content {
   width: 80ch;
   border: 1px solid #000000;
+  border-radius: 2ch;
   background-color: #4f4f4f;
   flex: initial;
 }
 
 .dashboard-container .tab-content {
-  border: 1px solid #000000;
+  border-bottom: 1px solid black;
   flex: auto;
 }
 

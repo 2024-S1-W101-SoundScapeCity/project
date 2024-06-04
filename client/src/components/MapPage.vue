@@ -30,6 +30,7 @@ export default {
   align-items: center;
   justify-content: center;
   overflow: hidden; /* prevents ugly blur around the edge*/
+  border-radius: 2ch 2ch 0 0;
 }
 
 .video-background {
